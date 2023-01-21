@@ -1,38 +1,215 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Inter&family=Lora&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.2s;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+
+html {
+    font-size: 62.5%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+body {
+    min-height: 100vh;
+    padding: 2.4rem;
+    background-color: var(--main-background-color);
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
   }
+
+
+/*******************
+     VARIABLES
+********************/
+:root {
+    /* COLORS */
+        --very-dark-black: #050505;
+        --dark-black: #1f1f1f;
+        --black: #2d2d2d;
+        --light-black: #3a3a3a;
+
+        --dark-gray: #757575;
+        --grey: #e9e9e9;
+        --light-grey: #f4f4f4;
+        --white: #ffffff;
+
+        --purple: #a445ed;
+        --red: #ff5252;
+
+    /* TYPOGRAPHY */
+        /* Fonts */
+        --sans-serif: 'Inter', sans-serif;
+        --serif: 'Lora', serif;
+        --mono: 'Inconsolata', monospace;
+
+    /* Main Background Color */
+        --main-background-color: #fff;
+
+    /* Text Color */
+    --text-color: #2d2d2d;
+
+    /* Moon Icon Color */
+    --moon-icon: #757575;
+
+    /* Theme Toggler Background */
+    --theme-toggler-background: #757575;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* THEME TOGGLE */
+:root:has(#dark:checked) {
+    --main-background-color: #050505;
+
+    /* Text Color */
+    --text-color: #fff;
+
+    /* Moon Icon Color */
+    --moon-icon: #a445ed;
+
+    /* Theme Toggler Background */
+    --theme-toggler-background: #a445ed;
 }
 
-.App-link {
-  color: #61dafb;
+/* FALLBACK FOR NO :HAS() SUPPORT */
+.dark {
+    /* Background Color */
+    --main-background-color: #050505;
+
+    /* Text Color */
+    --text-color: #fff;
+
+    /* Moon Icon Color */
+    --moon-icon: #a445ed;
+
+    /* Theme Toggler Background */
+    --theme-toggler-background: #a445ed;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+/*******************
+        NAV
+********************/
+.nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Nav Icon */
+.nav__icon {
+    display: inline-block;
+}
+.nav__icon > svg {
+    height: 3.2rem;
+    width: 2.805rem;
+}
+
+/* Font Selector */
+.nav__actions {
+    display: flex;
+    gap: 1.6rem;
+    align-items: center;
+}
+.nav__actions-font-selector {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 800;
+    font-family: var(--sans-serif);
+    color: var(--text-color);
+    padding-right: 1.5rem;
+    height: 100%;
+    border-right: 1px solid var(--grey);
+    cursor: pointer;
+}
+
+.nav__actions-font-selector::after {
+    content: url(./assets/icon-arrow-down.svg);
+    margin-left: 1.3rem;
+}
+
+/* Theme toggler */
+.theme-switcher-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.toggler-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Toggler Background */
+.theme-switcher > fieldset {
+    border: 0;
+    height: 2rem;
+    width: 4rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--theme-toggler-background);
+    border-radius: 30px;
+    margin-inline: auto;
+    position: relative;
+}
+
+/* Moon Icon */
+.theme-switcher-wrapper > svg {
+    height: 2rem;
+    width: 2rem;
+    stroke: var(--moon-icon);
+}
+
+.theme-switcher-wrapper > svg > path {
+    stroke: var(--moon-icon);
+}
+
+/* Radio Buttons */
+.theme-switcher input[type='radio'] {
+    color: transparent;
+    appearance: none;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: var(--Radio-color, currentColor);
+}
+
+.theme-switcher input[type='radio']#light:checked {
+    --Radio-color: var(--white);
+}
+
+.theme-switcher input[type='radio']#dark:checked {
+    --Radio-color: var(--white);
+}
+
+/* Screen Reader only class */
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
   }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+
+@media screen and (min-width: 768px) {
+    .nav__icon > svg {
+        width: 3.2rem;
+        height: 3.65rem;
+    }
 }
