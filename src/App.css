@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Inter&family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700;800;900&family=Lora:wght@400;500;600;700&display=swap');
 
 *,
 *::before,
@@ -9,10 +9,9 @@
     transition: all 0.2s;
 }
 
-
-
 html {
     font-size: 62.5%;
+    font-family: var(--font-family);
 }
 
 body {
@@ -21,10 +20,21 @@ body {
     background-color: var(--main-background-color);
 }
 
+@media screen and (min-width: 768px) {
+    body {
+        padding: 5.8rem 3.9rem;
+    }
+}
+
 img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;
-  }
+}
+
+.container {
+    max-width: 73.7rem;
+    margin: 0 auto;
+}
 
 
 /*******************
@@ -42,7 +52,7 @@ img, picture, video, canvas, svg {
         --light-grey: #f4f4f4;
         --white: #ffffff;
 
-        --purple: #a445ed;
+        --purple: rgb(164, 69, 237);
         --red: #ff5252;
 
     /* TYPOGRAPHY */
@@ -54,14 +64,24 @@ img, picture, video, canvas, svg {
     /* Main Background Color */
         --main-background-color: #fff;
 
+    /* Font Family */
+        --font-family: 'Inter', sans-serif;
+
     /* Text Color */
-    --text-color: #2d2d2d;
+        --text-color: #2d2d2d;
 
     /* Moon Icon Color */
-    --moon-icon: #757575;
+        --moon-icon: #757575;
 
     /* Theme Toggler Background */
-    --theme-toggler-background: #757575;
+        --theme-toggler-background: #757575;
+
+    /* Drop Down */
+        --dropdown-bg: #fff;
+        --dropdown-shadow: rgba(0, 0, 0, 0.1);
+
+    /* SearchBar */
+        --searchbar-bg: #f4f4f4;
 }
 
 /* THEME TOGGLE */
@@ -76,6 +96,11 @@ img, picture, video, canvas, svg {
 
     /* Theme Toggler Background */
     --theme-toggler-background: #a445ed;
+
+    
+    /* Drop Down */
+    --dropdown-bg: #1f1f1f;
+    --dropdown-shadow: rgba(164,69,237,0.5);
 }
 
 /* FALLBACK FOR NO :HAS() SUPPORT */
@@ -92,6 +117,27 @@ img, picture, video, canvas, svg {
     /* Theme Toggler Background */
     --theme-toggler-background: #a445ed;
 
+    /* Drop Down */
+    --dropdown-bg: #1f1f1f;
+    --dropdown-shadow: rgba(164,69,237,0.5);
+
+    /* SearchBar */
+        --searchbar-bg: #1f1f1f;
+}
+
+
+
+/* Font Toggle */
+.sans-serif {
+    --font-family: 'Inter', sans-serif;
+}
+
+.serif {
+    --font-family: 'Lora', serif;
+}
+
+.mono {
+    --font-family: 'Inconsolata', monospace;
 }
 
 
@@ -122,19 +168,68 @@ img, picture, video, canvas, svg {
     display: flex;
     align-items: center;
     font-size: 1.4rem;
-    font-weight: 800;
-    font-family: var(--sans-serif);
+    font-weight: 600;
+    font-family: var(--font-family);
     color: var(--text-color);
     padding-right: 1.5rem;
     height: 100%;
     border-right: 1px solid var(--grey);
     cursor: pointer;
+    position: relative;
+    text-transform: capitalize;
 }
 
 .nav__actions-font-selector::after {
     content: url(./assets/icon-arrow-down.svg);
     margin-left: 1.3rem;
+    position: relative;
+    bottom: 0.1rem;
 }
+
+/* DropDown */
+.nav__actions-dropdown {
+    background-color: var(--dropdown-bg);
+    border-radius: 16px;
+    bottom: -17rem;
+    box-shadow: 0px 0px 25px 5px var(--dropdown-shadow);
+    color: var(--text-color);
+    display: none;
+    flex-direction: column;
+    font-size: 1.8rem;
+    gap: 1rem;
+    height: 15.2rem;
+    justify-content: space-evenly;
+    left: -8rem;
+    list-style-type: none;
+    opacity: 0;
+    padding: 2.4rem;
+    position: absolute;
+    width: 18.3rem;
+}
+
+.nav__actions-dropdown.active {
+    display: flex;
+    opacity: 1;
+}
+
+.nav__actions-dropdown :nth-child(1) {
+    font-family: var(--sans-serif);
+}
+
+.nav__actions-dropdown :nth-child(2) {
+    font-family: var(--serif);
+}
+
+.nav__actions-dropdown :nth-child(3) {
+    font-family: var(--mono);
+}
+
+.nav__actions-dropdown li:hover {
+    color: var(--purple);
+}
+
+
+
 
 /* Theme toggler */
 .theme-switcher-wrapper {
@@ -142,6 +237,17 @@ img, picture, video, canvas, svg {
     justify-content: space-between;
     align-items: center;
     gap: 1.2rem;
+}
+
+/* Moon Icon */
+.theme-switcher-wrapper > svg {
+    height: 2rem;
+    width: 2rem;
+    stroke: var(--moon-icon);
+}
+
+.theme-switcher-wrapper > svg > path {
+    stroke: var(--moon-icon);
 }
 
 .toggler-wrapper {
@@ -156,24 +262,20 @@ img, picture, video, canvas, svg {
     height: 2rem;
     width: 4rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     background-color: var(--theme-toggler-background);
     border-radius: 30px;
     margin-inline: auto;
     position: relative;
+    padding: 0 0.3rem;
 }
 
-/* Moon Icon */
-.theme-switcher-wrapper > svg {
-    height: 2rem;
-    width: 2rem;
-    stroke: var(--moon-icon);
+.theme-switcher > fieldset:hover {
+    background-color: var(--purple);
 }
 
-.theme-switcher-wrapper > svg > path {
-    stroke: var(--moon-icon);
-}
+
 
 /* Radio Buttons */
 .theme-switcher input[type='radio'] {
@@ -211,5 +313,72 @@ img, picture, video, canvas, svg {
     .nav__icon > svg {
         width: 3.2rem;
         height: 3.65rem;
+    }
+
+    .nav__actions-font-selector {
+        font-size: 1.8rem;
+        padding-right: 2.6rem;
+    }
+
+    .nav__actions-font-selector::after {
+        bottom: 0.2rem;
+        margin-left: 1.5rem;
+    }
+
+    .nav__actions-dropdown {
+        left: -5.5rem
+    }
+
+    .theme-switcher-wrapper {
+        gap: 2rem;
+        padding-left: 1rem;
+    }
+}
+
+
+
+
+/*******************
+    SEARCHBAR
+********************/
+.searchbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--searchbar-bg);
+    border-radius: 1.8rem;
+    margin-top: 2.2rem;
+}
+
+.searchbar__input {
+    border: none;
+    padding: 1.5rem 0 1.5rem 2.4rem;
+    color: var(--text-color);
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 1.6rem;
+    font-weight: 700;
+    width: 100%;
+    outline: none;
+}
+
+.searchbar__btn {
+    padding: 0 2.5rem 0 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.searchbar__btn > svg {
+    transform: scale(1.15);
+}
+
+@media screen and (min-width: 768px) {
+    .searchbar {
+        margin-top: 5.1rem;
+    }
+    .searchbar__input {
+        padding: 2.2rem 0 2.2rem 2.4rem;
+        font-size: 2rem;
     }
 }
