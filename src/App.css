@@ -52,8 +52,9 @@ img, picture, video, canvas, svg {
         --light-grey: #f4f4f4;
         --white: #ffffff;
 
-        --purple: rgb(164, 69, 237);
+        --purple: #a445ed;
         --red: #ff5252;
+
 
     /* TYPOGRAPHY */
         /* Fonts */
@@ -61,6 +62,9 @@ img, picture, video, canvas, svg {
         --serif: 'Lora', serif;
         --mono: 'Inconsolata', monospace;
 
+
+
+    /* LIGHT THEME VARIABLES */
     /* Main Background Color */
         --main-background-color: #fff;
 
@@ -82,6 +86,9 @@ img, picture, video, canvas, svg {
 
     /* SearchBar */
         --searchbar-bg: #f4f4f4;
+
+    /* Definition divider color */
+    --divider-clr: #e9e9e9;
 }
 
 /* THEME TOGGLE */
@@ -101,6 +108,12 @@ img, picture, video, canvas, svg {
     /* Drop Down */
     --dropdown-bg: #1f1f1f;
     --dropdown-shadow: rgba(164,69,237,0.5);
+
+    /* SearchBar */
+    --searchbar-bg: #1f1f1f;
+
+    /* Definition divider color */
+    --divider-clr: #a3a3a3;
 }
 
 /* FALLBACK FOR NO :HAS() SUPPORT */
@@ -123,6 +136,9 @@ img, picture, video, canvas, svg {
 
     /* SearchBar */
         --searchbar-bg: #1f1f1f;
+
+    /* Definition divider color */
+    --divider-clr: #a3a3a3;
 }
 
 
@@ -139,6 +155,11 @@ img, picture, video, canvas, svg {
 .mono {
     --font-family: 'Inconsolata', monospace;
 }
+
+
+
+
+
 
 
 /*******************
@@ -177,6 +198,7 @@ img, picture, video, canvas, svg {
     cursor: pointer;
     position: relative;
     text-transform: capitalize;
+    user-select: none;
 }
 
 .nav__actions-font-selector::after {
@@ -227,8 +249,6 @@ img, picture, video, canvas, svg {
 .nav__actions-dropdown li:hover {
     color: var(--purple);
 }
-
-
 
 
 /* Theme toggler */
@@ -338,6 +358,11 @@ img, picture, video, canvas, svg {
 
 
 
+
+
+
+
+
 /*******************
     SEARCHBAR
 ********************/
@@ -347,6 +372,7 @@ img, picture, video, canvas, svg {
     background-color: var(--searchbar-bg);
     border-radius: 1.8rem;
     margin-top: 2.2rem;
+    max-height: 4.8rem;
 }
 
 .searchbar__input {
@@ -360,6 +386,7 @@ img, picture, video, canvas, svg {
     width: 100%;
     outline: none;
 }
+
 
 .searchbar__btn {
     padding: 0 2.5rem 0 0;
@@ -376,9 +403,263 @@ img, picture, video, canvas, svg {
 @media screen and (min-width: 768px) {
     .searchbar {
         margin-top: 5.1rem;
+        max-height: 6.4rem;
     }
     .searchbar__input {
         padding: 2.2rem 0 2.2rem 2.4rem;
         font-size: 2rem;
     }
+}
+
+
+
+
+
+
+
+
+/************************
+    DEFINITION SECTION
+*************************/
+
+/* HEADER */
+.main-content__header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.2rem;
+}
+
+.main-content__header .word-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.main-content__header .word {
+    font-size: 3.2rem;
+    color: var(--text-color);
+}
+
+.main-content__header .phonetic {
+    font-size: 1.8rem;
+    color: var(--purple);
+}
+
+
+/* Play button SVG */
+.main-content__header .play-btn {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.main-content__header .play-btn > svg {
+    height: 4.8rem;
+    width: auto;
+}
+
+.main-content__header .play-btn:hover > svg > g > circle {
+    opacity: 1;
+}
+
+.play-btn:hover > svg > g > path {
+    opacity: 1;
+    fill: #fff;
+}
+
+
+/* DEFINITION COMPONENT */
+.main-content .definition {
+    margin-top: 3.5rem;
+}
+
+
+.main-content .definition .part-of-speech {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-content .definition .part-of-speech p {
+    font-size: 1.8rem;
+    font-style: italic;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-right: 1.6rem;
+}
+
+.main-content .definition .part-of-speech::after {
+    content: '';
+    display: inline-block;
+    height: 1px;
+    width: 90%;
+    background-color: var(--divider-clr);
+    position: relative;
+    top: 1px;
+}
+
+
+
+
+
+/* Meaning */
+.main-content .meaning {
+    height: min-content;
+    margin-top: 3.2rem;
+}
+
+.main-content .meaning h2 {
+    font-size: 1.6rem;
+    color: var(--dark-gray);
+    font-weight: 400;
+}
+
+.main-content .meaning .list-container {
+    margin-top: 1.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    padding-left: 1.3rem;
+}
+
+.main-content .meaning .list-container .definition-list-item {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    line-height: 2.4rem;
+    padding-left: 1.4rem;
+}
+
+.main-content .meaning .list-container li::marker {
+    color: var(--purple);
+}
+
+.main-content .meaning .list-container .example-list-item {
+    list-style: none;
+    color: #757575;
+    font-size: 1.5rem;
+    line-height: 2.4rem;
+    padding-left: 1.4rem;
+}
+
+
+/* Synonyms and Antonyms */
+.main-content .synonyms-antonyms .synonyms {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.6rem;
+    margin-top: 2.4rem;
+}
+
+.synonyms :nth-child(1) {
+    color: #757575;
+    font-weight: 400;
+}
+
+.synonyms :nth-child(2) {
+    color: var(--purple);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.synonyms :nth-child(2):hover {
+    text-decoration: underline;
+}
+
+
+
+/* Source */
+.main-content .source {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4rem;
+    gap: 0.8rem;
+    padding-top: 2.4rem;
+    border-top: 1px solid var(--divider-clr);
+    margin-top: 3.2rem;
+}
+
+.source p {
+    color: var(--dark-gray);
+    text-decoration: underline;
+}
+
+.source a {
+    color: var(--text-color);
+}
+
+.source a::after {
+    content: url(./assets/icon-new-window.svg);
+    margin-left: 0.9rem;
+    position: relative;
+    top: 0.2rem;
+}
+
+
+/* Media screen */
+@media screen and (min-width: 768px) {
+    /* HEADER */
+    .main-content__header {
+        margin-top: 5rem;
+    }
+
+    .main-content__header .word {
+        font-size: 6.4rem;
+    }
+
+    .main-content__header .phonetic {
+        font-size: 2.4rem;
+    }
+
+    .main-content__header .play-btn > svg {
+        height: 7.5rem;
+    }
+
+    /* DEFINITION COMPONENT */
+    .main-content .definition .part-of-speech p {
+        font-size: 2.4rem;
+    }
+
+    /* Meaning */
+    .main-content .meaning {
+        margin-top: 4rem;
+    }
+
+    .main-content .meaning h2 {
+        font-size: 2rem;
+    }
+
+    .main-content .meaning .list-container {
+        padding-left: 3.6rem;
+        margin-top: 2.4rem;
+    }
+
+    .main-content .meaning .list-container .definition-list-item {
+        font-size: 1.8rem;
+    }
+
+    .main-content .meaning .list-container .example-list-item {
+        font-size: 1.8rem;
+    }
+
+
+
+    /* Synonyms and Antonyms */
+    .main-content .synonyms-antonyms {
+        margin-top: 3.6rem;
+    }
+
+    .synonyms {
+        font-size: 2rem;
+    }
+
+
+    /* Source */
+    .main-content .source {
+        flex-direction: row;
+        gap: 2rem;
+        padding-top: 2rem;
+        margin-top: 4.4rem;
+    }
+
 }
