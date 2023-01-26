@@ -43,6 +43,13 @@ const ThemeSwitcher = () => {
 		}
 	};
 
+	const onClickDark = () => {
+		const theme = localStorage.getItem('themePreference');
+		if (theme === 'dark') {
+			onLightCheckedHandler();
+		}
+	};
+
 	// Retrieving theme preference from localStorage when page loads
 	useEffect(() => {
 		const storedThemePreference = localStorage.getItem('themePreference');
@@ -81,6 +88,7 @@ const ThemeSwitcher = () => {
 						</label>
 						<input
 							onChange={onDarkCheckedHandler}
+							onClick={onClickDark}
 							type='radio'
 							name='theme'
 							id='dark'
