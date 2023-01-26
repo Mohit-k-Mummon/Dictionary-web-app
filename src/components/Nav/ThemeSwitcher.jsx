@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import { ReactComponent as MoonIcon } from '../../assets/icon-moon.svg';
 
@@ -10,7 +10,7 @@ const ThemeSwitcher = () => {
 	// helper constant
 	const documentClassList = document.documentElement.classList;
 
-	const onLightCheckedHandler = () => {
+	const onLightCheckedHandler = useCallback(() => {
 		// Fallback code for no :has() support
 		if (documentClassList.contains('dark')) {
 			documentClassList.remove('dark');
@@ -21,9 +21,9 @@ const ThemeSwitcher = () => {
 		setDarkIsChecked(false);
 
 		localStorage.setItem('themePreference', 'light');
-	};
+	}, [documentClassList]);
 
-	const onDarkCheckedHandler = () => {
+	const onDarkCheckedHandler = useCallback(() => {
 		// Fallback code for no :has() support
 		if (documentClassList.contains('light')) {
 			documentClassList.remove('light');
@@ -34,7 +34,7 @@ const ThemeSwitcher = () => {
 		setDarkIsChecked(true);
 
 		localStorage.setItem('themePreference', 'dark');
-	};
+	}, [documentClassList]);
 
 	const onClickLight = () => {
 		const theme = localStorage.getItem('themePreference');
@@ -57,7 +57,7 @@ const ThemeSwitcher = () => {
 		} else {
 			onLightCheckedHandler();
 		}
-	}, []);
+	}, [onLightCheckedHandler, onDarkCheckedHandler]);
 
 	return (
 		<div className='theme-switcher-wrapper'>
