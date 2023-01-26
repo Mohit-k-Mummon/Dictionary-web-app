@@ -232,6 +232,7 @@ img, picture, video, canvas, svg {
 .nav__actions-dropdown.active {
     display: flex;
     opacity: 1;
+    z-index: 10;
 }
 
 .nav__actions-dropdown :nth-child(1) {
@@ -373,6 +374,23 @@ img, picture, video, canvas, svg {
     border-radius: 1.8rem;
     margin-top: 2.2rem;
     max-height: 4.8rem;
+    position: relative;
+}
+
+.searchbar.error-active {
+    outline: 1px solid var(--red);
+}
+
+.searchbar__error {
+    position: absolute;
+    font-size: 1.4rem;
+    color: var(--red);
+    bottom: -2rem;
+    visibility: hidden;
+}
+
+.searchbar__error.error-active {
+    visibility: visible;
 }
 
 .searchbar__input {
@@ -408,6 +426,11 @@ img, picture, video, canvas, svg {
     .searchbar__input {
         padding: 2.2rem 0 2.2rem 2.4rem;
         font-size: 2rem;
+    }
+
+    .searchbar__error {
+        font-size: 2rem;
+        bottom: -3rem;
     }
 }
 
@@ -662,4 +685,43 @@ img, picture, video, canvas, svg {
         margin-top: 4.4rem;
     }
 
+}
+
+/* NO DEFINITION FOUND MESSAGE */
+.no-definition {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 13.2rem;
+}
+
+.emoji {
+    font-size: 6.4rem;
+}
+
+.no-definition .heading {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-top: 2.4rem;
+}
+
+.no-definition .tagline {
+    font-size: 1.8rem;
+    color: var(--dark-gray);
+    line-height: 2.4rem;
+    margin-top: 1.2rem;
+}
+
+@media screen and (min-width: 768px) {
+    .no-definition {
+        margin-top: 11.5rem;
+    }
+    .no-definition .heading {
+        margin-top: 4rem;
+    }
+    
+    .no-definition .tagline {
+        margin-top: 2.3rem;
+    }
 }
