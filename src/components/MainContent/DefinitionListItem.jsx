@@ -14,7 +14,7 @@ const DefinitionListItem = props => {
 	return (
 		<React.Fragment>
 			<li className='definition-list-item'>{props.obj.definition}</li>
-			{hasExample && <li className='example-list-item'>{props.obj.example}</li>}
+			{hasExample && <li className='example-list-item'>{`"${props.obj.example}"`}</li>}
 		</React.Fragment>
 	);
 };
