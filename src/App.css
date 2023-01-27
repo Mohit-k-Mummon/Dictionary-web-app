@@ -143,6 +143,7 @@ img, picture, video, canvas, svg {
 
 
 
+
 /* Font Toggle */
 .sans-serif {
     --font-family: 'Inter', sans-serif;
@@ -482,15 +483,16 @@ img, picture, video, canvas, svg {
     width: auto;
 }
 
-.main-content__header .play-btn:hover > svg > g > circle {
-    opacity: 1;
-}
+@media (hover: hover) {
+    .main-content__header .play-btn:hover > svg > g > circle {
+        opacity: 1;
+    }
 
-.play-btn:hover > svg > g > path {
-    opacity: 1;
-    fill: #fff;
+    .play-btn:hover > svg > g > path {
+        opacity: 1;
+        fill: #fff;
+    }
 }
-
 
 /* DEFINITION COMPONENT */
 .main-content .definition {

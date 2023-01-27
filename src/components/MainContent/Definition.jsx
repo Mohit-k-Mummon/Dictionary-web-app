@@ -23,7 +23,6 @@ const Definition = props => {
 		</div>
 	);
 
-	console.log(props.meaning.definitions);
 	// Mapping objects in definitions array to a list item
 	const list = props.meaning.definitions
 		.map(obj => {
