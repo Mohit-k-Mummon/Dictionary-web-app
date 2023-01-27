@@ -12,6 +12,9 @@ const SearchBar = props => {
 	// onSUBMIT HANDLER
 	function searchWordHandler(event) {
 		event.preventDefault();
+		event.target.blur();
+		event.target.firstChild.blur();
+
 		const enteredWord = wordInputRef.current.value;
 
 		if (enteredWord.trim().length === 0) {
